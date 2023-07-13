@@ -1,3 +1,5 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
 :root {
   --main-dark-blue: #2d3f53;
   --main-light-blue: #95afbf;

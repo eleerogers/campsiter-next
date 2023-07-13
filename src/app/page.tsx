@@ -1,7 +1,6 @@
-"use client"
-
 import Link from 'next/link';
-import Button from 'react-bootstrap/Button';
+import { Button } from '@/app/components/bootstrap';
+import './bootstrap.colors.css'
 
 
 function Landing() {
@@ -13,14 +12,14 @@ function Landing() {
         <br />
         <br />
         <ul>
-          <Link href="/campgroundsHome">
-            <Button
-              className="box-shadow"
-              variant="info"
-            >
-              Get Started
-            </Button>
-          </Link>
+          <Button
+            as={Link}
+            className="box-shadow"
+            variant="info"
+            href="/campgroundsHome"
+          >
+            Get Started
+          </Button>
         </ul>
       </div>
       <ul className="slideshow">

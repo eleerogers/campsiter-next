@@ -1,0 +1,63 @@
+import React from 'react';
+import Link from 'next/link';
+import { Figure, Button } from './bootstrap'
+import useLoading from '../hooks/useLoading';
+import StarRating from './starRating';
+import { ICampground } from '../interfaces';
+
+
+interface Props {
+  campground: ICampground;
+  className: string;
+}
+
+function CampgroundThumb({ campground, className }: Props) {
+  const { id, name, image, rating } = campground;
+  const [loading, setLoadingFalse] = useLoading();
+
+  return (
+    <div>
+      <Figure
+        className={`img-fluid w-100 centered campground transition ${loading ? 'loading' : 'done'}`}
+      >
+        <Link href={`/campgrounds/${id}`}>
+          <Figure.Image
+            alt={name}
+            src={image}
+            onLoad={setLoadingFalse}
+            className={className}
+            thumbnail
+          />
+        </Link>
+        <Figure.Caption className="text-center">
+          <Link className="color-grey" href={`/campgrounds/${id}`}>
+            {name}
+          </Link>
+          <div className="centered thumb-rating">
+          {
+            (rating && +rating > 0) ?
+            <StarRating
+              currRating={+rating}
+              readonly={true}
+              className="star-sm"
+              divClassName="justify-centered mb-1"
+            />
+            : <p className="mb-1"><i>No reviews yet</i></p>
+          }
+          </div>
+        </Figure.Caption>
+        <Link href={`/campgrounds/${id}`}>
+          <Button
+            size="sm"
+            variant="outline-primary"
+            className="mt-1"
+          >
+            More Info
+          </Button>
+        </Link>
+      </Figure>
+    </div>
+  );
+}
+
+export default CampgroundThumb;
