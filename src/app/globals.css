@@ -408,7 +408,7 @@ a:hover {
 }
 
 .footer-box {
-  justify-content: end;
+  justify-content: flex-end;
   display: flex;
 }
 
@@ -914,4 +914,14 @@ div > .figure > a > .img-thumbnail {
 
 .go-back-btn:focus {
   text-decoration: underline;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body {
+  flex: 1;
 }

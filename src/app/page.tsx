@@ -12,14 +12,14 @@ function Landing() {
         <br />
         <br />
         <ul>
-          <Button
-            as={Link}
-            className="box-shadow"
-            variant="info"
-            href="/campgroundsHome"
-          >
-            Get Started
-          </Button>
+          <Link href="/campgroundsHome">
+            <Button
+              className="box-shadow"
+              variant="info"
+            >
+              Get Started
+            </Button>
+          </Link>
         </ul>
       </div>
       <ul className="slideshow">
