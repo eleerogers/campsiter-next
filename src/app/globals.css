@@ -925,3 +925,34 @@ main {
 body {
   flex: 1;
 }
+
+.btn-info {
+  color: #fff;
+  background-color: #29ABE0;
+  border-color: #29ABE0;
+}
+
+.btn-info:hover {
+  color: #fff;
+  background-color: #1d95c6;
+  border-color: #1b8dbb;
+}
+
+.btn-info:focus, .btn-info.focus {
+  color: #fff;
+  background-color: #1d95c6;
+  border-color: #1b8dbb;
+}
+
+.btn-info.disabled, .btn-info:disabled {
+  color: #fff;
+  background-color: #29ABE0;
+  border-color: #29ABE0;
+}
+
+.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
+.show > .btn-info.dropdown-toggle {
+  color: #fff;
+  background-color: #1b8dbb;
+  border-color: #1984b0;
+}

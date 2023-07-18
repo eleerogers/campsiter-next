@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/app/components/bootstrap';
-import './bootstrap.colors.css'
+import { Button } from '@/app/(application)/components/bootstrap';
 
 
 function Landing() {
