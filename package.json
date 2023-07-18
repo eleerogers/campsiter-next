@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "concurrently \"npm run dev\" \"npm run backend\"",
+    "lint": "next lint",
+    "backend": "node src/server/index.ts"
   },
   "dependencies": {
     "@types/node": "20.4.1",
@@ -49,6 +50,7 @@
     "@types/node-geocoder": "^3.0.0",
     "@types/nodemailer": "^6.4.7",
     "@types/pg": "^8.6.6",
-    "@types/serve-favicon": "^2.5.4"
+    "@types/serve-favicon": "^2.5.4",
+    "concurrently": "^8.2.0"
   }
 }
