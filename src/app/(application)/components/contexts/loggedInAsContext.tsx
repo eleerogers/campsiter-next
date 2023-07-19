@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef, useContext, ReactNode } from 'react';
+import React, { useState, useContext, ReactNode, useRef } from 'react';
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
 import { IUserCamelCase, ILoggedInAsContext } from '../../interfaces';
+import useClientEffect from '../../hooks/useClientEffect'
 
 
 const loggedInAsInit: IUserCamelCase = {
@@ -24,78 +25,85 @@ interface Props {
 const LoggedInAsContext = React.createContext<ILoggedInAsContext | null>(null);
 
 function LoggedInAsContextProvider({ children }: Props) {
-  
   const [loggedInAs, setLoggedInAs] = useState(loggedInAsInit);
+  const cancelTokenRef = useRef<CancelTokenSource | null>(null);
 
-  useEffect(() => {
-    let useEffectSource = axios.CancelToken.source();
-    if (localStorage.userId) {
-      axios.get(`/api/users/${localStorage.userId}`, { cancelToken: useEffectSource.token })
-        .then(({
-          data: {
-            user: {
-              admin,
-              created_at: createdAt,
-              email,
-              first_name: firstName,
-              last_name: lastName,
-              id,
-              image,
-              image_id: imageId,
-              password,
-              username
-            }
-          }
-        }) => {
-          const updatedLoggedInAs: IUserCamelCase = {
-            admin,
-            createdAt,
-            email,
-            firstName,
-            lastName,
-            id,
-            image,
-            imageId,
-            password,
-            username
-          };
-          setLoggedInAs(updatedLoggedInAs);
-        })
-        .catch((err) => {
-          if (axios.isCancel(err)) {
-            console.log(`axios call was cancelled`);
-          } else {
-            const { response: { data: message } } = err;
-            toast.error(`${message}`);
-          }
+  useClientEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const source = axios.CancelToken.source();
+        cancelTokenRef.current = source;
+
+        const response = await axios.get(`/api/users/${localStorage.userId}`, {
+          cancelToken: source.token
         });
-    }
-    return () => { useEffectSource.cancel() };
-  }, []);
 
-  const cancelTokenRef = useRef<CancelTokenSource>();
-  useEffect(() => {
+        const {
+          admin,
+          created_at: createdAt,
+          email,
+          first_name: firstName,
+          last_name: lastName,
+          id,
+          image,
+          image_id: imageId,
+          password,
+          username
+        } = response.data.user;
+
+        const updatedLoggedInAs: IUserCamelCase = {
+          admin,
+          createdAt,
+          email,
+          firstName,
+          lastName,
+          id,
+          image,
+          imageId,
+          password,
+          username
+        };
+
+        setLoggedInAs(updatedLoggedInAs);
+      } catch (error) {
+        const err = error as AxiosError
+        if (axios.isCancel(err)) {
+          console.log(`axios call was cancelled`);
+        }
+        if (err.response?.data) {
+          const { response: { data: message } } = err;
+          toast.error(`${message}`);
+        }
+      }
+    };
+    if (localStorage.userId) {
+      fetchUser();
+    }
+
     return () => {
       if (cancelTokenRef.current) {
         cancelTokenRef.current.cancel();
       }
-    }
+    };
   }, []);
-  
+
   async function logoutUser(path: string, push: (route: string) => void) {
-    cancelTokenRef.current = axios.CancelToken.source();
-    const cancelToken = cancelTokenRef.current.token;
     try {
-      const pathArr = path.split('/');
-      const pathLast = pathArr.pop();
-      await axios.get('/api/users/logout', { cancelToken });
+      if (cancelTokenRef.current) {
+        cancelTokenRef.current.cancel('Logout request canceled.');
+      }
+
+      await axios.get('/api/users/logout');
       localStorage.removeItem('userId');
       setLoggedInAs(loggedInAsInit);
+
+      const pathArr = path.split('/');
+      const pathLast = pathArr.pop();
       if (
-        pathLast === 'new'
-        || pathLast === 'edit'
-        || pathLast === 'newCampground'
-        || pathLast === 'editCampground'
+        pathLast === 'new' ||
+        pathLast === 'edit' ||
+        pathLast === 'newCampground' ||
+        pathLast === 'editCampground'
       ) {
         push('/campgroundsHome');
       }
@@ -120,8 +128,12 @@ function LoggedInAsContextProvider({ children }: Props) {
   );
 }
 
-const useLoggedInAsContext = () => {
-  return useContext(LoggedInAsContext);
+const useLoggedInAsContext = (): ILoggedInAsContext => {
+  const context = useContext(LoggedInAsContext);
+  if (!context) {
+    throw new Error('useLoggedInAsContext must be used within a LoggedInAsContextProvider');
+  }
+  return context;
 };
 
 export { LoggedInAsContextProvider, LoggedInAsContext, useLoggedInAsContext };
