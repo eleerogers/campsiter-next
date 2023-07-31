@@ -1,16 +1,17 @@
 require('dotenv').config();
 
-import path from 'path';
-import express, { Request, Response } from 'express'
-import type { ErrorRequestHandler } from "express";
-import favicon from 'serve-favicon';
-import cookieParser from 'cookie-parser';
-import cookieSession from 'cookie-session';
-import cors from 'cors';
-import campgrounds from './routes/campgroundRoutes';
-import users from './routes/userRoutes';
-import comments from './routes/commentRoutes';
-import compression from 'compression';
+const path = require('path');
+const express = require('express');
+import { Request, Response } from 'express';
+type ErrorRequestHandler = import('express').ErrorRequestHandler;
+const favicon = require('serve-favicon');
+const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
+const cors = require('cors');
+const campgrounds = require('./routes/campgroundRoutes').default;
+const users = require('./routes/userRoutes').default;
+const comments = require('./routes/commentRoutes').default;
+const compression = require('compression');
 
 const app = express();
 
@@ -19,7 +20,9 @@ app.use(compression());
 app.use(favicon(path.join(__dirname, "..", "..", "public", "favicon.ico")))
 
 app.use(cookieSession({
-  secret: process.env.EXPRESS_SECRET
+  secret: process.env.EXPRESS_SECRET,
+  keys: [],
+  signed: false
 }));
 
 app.use(express.static('dist'));
@@ -52,4 +55,4 @@ const errorHandler: ErrorRequestHandler = (error, req, res) => {
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT || 5000, () => console.log(`Listening on port ${process.env.PORT || 5000}!`));
+app.listen(process.env.PORT || 5001, () => console.log(`Listening on port ${process.env.PORT || 5001}!`));

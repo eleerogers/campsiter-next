@@ -1,3 +1,5 @@
+"use client"
+
 import { Nav, Navbar, Container, Button, Col } from './bootstrap'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -84,7 +86,7 @@ function Header() {
       <Container className="d-flex justify-content-between">
         <Col className="min-width-col">
           <Link href="/campgroundsHome">
-            <Image className="limit-pic-size" alt="Campsiter logo" src="https://res.cloudinary.com/eleerogers/image/upload/v1593126696/noun_camping_location_710490_srkfky.png" />
+            <Image className="limit-pic-size" alt="Campsiter logo" src="https://res.cloudinary.com/eleerogers/image/upload/v1593126696/noun_camping_location_710490_srkfky.png" height={55} width={55} />
             <Navbar.Brand className="color-dark-blue">CampSiter</Navbar.Brand>
           </Link>
         </Col>

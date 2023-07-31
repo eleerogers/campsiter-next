@@ -24,7 +24,7 @@ function Page() {
   const CAMPGROUNDS_PER_PAGE = 12;
 
   const [jumboOffsetHt, setJumboOffsetHt] = useState(0);
-  const jumbotronRef = useRef<HTMLDivElement>(null!);
+  const jumbotronRef = useRef<HTMLDivElement | null>(null);
 
   const {
     jump, currentData, currentPage, maxPage
@@ -48,7 +48,7 @@ function Page() {
   }, [debouncedResizeWindow]);
 
   useEffect(() => {
-    setJumboOffsetHt(jumbotronRef.current.offsetHeight)
+    setJumboOffsetHt(jumbotronRef.current?.offsetHeight || 0)
   }, [windowWidth, jumbotronRef]);
 
   const pages = [];

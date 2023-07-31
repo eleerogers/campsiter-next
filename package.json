@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build-server": "tsc",
     "start": "concurrently \"npm run dev\" \"npm run backend\"",
     "lint": "next lint",
-    "backend": "node src/server/index.ts"
+    "backend": "node dist/server/index.js"
   },
   "dependencies": {
     "@types/node": "20.4.1",
@@ -21,12 +22,13 @@
     "cookie-parser": "^1.4.6",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.10",
     "express": "^4.18.2",
     "multer": "1.4.4-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
-    "next": "13.4.10",
+    "next": "^13.4.12",
     "node-geocoder": "^3.27.0",
     "nodemailer": "^6.4.16",
     "pg": "^8.2.1",

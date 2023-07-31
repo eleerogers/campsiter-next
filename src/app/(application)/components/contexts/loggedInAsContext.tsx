@@ -1,8 +1,9 @@
-import React, { useState, useContext, ReactNode, useRef } from 'react';
+"use client"
+
+import React, { useState, useEffect, useContext, ReactNode, useRef } from 'react';
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
 import { IUserCamelCase, ILoggedInAsContext } from '../../interfaces';
-import useClientEffect from '../../hooks/useClientEffect'
 
 
 const loggedInAsInit: IUserCamelCase = {
@@ -28,7 +29,7 @@ function LoggedInAsContextProvider({ children }: Props) {
   const [loggedInAs, setLoggedInAs] = useState(loggedInAsInit);
   const cancelTokenRef = useRef<CancelTokenSource | null>(null);
 
-  useClientEffect(() => {
+  useEffect(() => {
     const fetchUser = async () => {
       try {
         const source = axios.CancelToken.source();

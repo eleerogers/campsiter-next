@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { LoggedInAsContextProvider } from './components/contexts/loggedInAsContext'
 import Footer from '@/app/(application)/components/footer'
