@@ -1,58 +1,63 @@
 require('dotenv').config();
 
-const path = require('path');
-const express = require('express');
+import express from 'express';
+import next from 'next';
 import { Request, Response } from 'express';
-type ErrorRequestHandler = import('express').ErrorRequestHandler;
-const favicon = require('serve-favicon');
-const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
-const cors = require('cors');
-const campgrounds = require('./routes/campgroundRoutes').default;
-const users = require('./routes/userRoutes').default;
-const comments = require('./routes/commentRoutes').default;
-const compression = require('compression');
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import cors from 'cors';
+import campgrounds from './routes/campgroundRoutes';
+import users from './routes/userRoutes';
+import comments from './routes/commentRoutes';
+import compression from 'compression';
+type ErrorRequestHandler = express.ErrorRequestHandler;
 
-const app = express();
+const dev = process.env.NODE_ENV !== 'production';
+const nextApp = next({ dev });
+const handle = nextApp.getRequestHandler();
 
-app.use(compression());
+nextApp.prepare().then(() => {
+  const app = express();
 
-app.use(favicon(path.join(__dirname, "..", "..", "public", "favicon.ico")))
+  app.use(compression());
 
-app.use(cookieSession({
-  secret: process.env.EXPRESS_SECRET,
-  keys: [],
-  signed: false
-}));
+  app.use(session({
+    secret: process.env.EXPRESS_SECRET || 'default-secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: dev ? false : true } // Use true if https is enabled on your server
+  }));
 
-app.use(express.static('dist'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser('keyboard_cat'));
-app.use(cors({
-  credentials: true
-}));
+  app.use(express.static('dist'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.use(cookieParser('keyboard_cat'));
+  app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  }));
 
-app.use('/api/users', users);
-app.use('/api/campgrounds', campgrounds);
-app.use('/api/comments', comments);
+  app.use('/api/users', users);
+  app.use('/api/campgrounds', campgrounds);
+  app.use('/api/comments', comments);
 
-
-app.get('*', (req: Request, res: Response) => {
-  console.log('index catch-all');
-  res.sendFile('/app/dist/index.html');
-});
-
-// error handler middleware
-const errorHandler: ErrorRequestHandler = (error, req, res) => {
-  res.status(error.status || 500).send({
-    error: {
-      status: error.status || 500,
-      message: error.message || 'Internal Server Error',
-    },
+  // Handle everything else with Next.js
+  app.all('*', (req: Request, res: Response) => {
+    console.log("catch all")
+    return handle(req, res);
   });
-}
 
-app.use(errorHandler);
+  // error handler middleware
+  const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
+    res.status(error.status || 500).send({
+      error: {
+        status: error.status || 500,
+        message: error.message || 'Internal Server Error',
+      },
+    });
+  }
 
-app.listen(process.env.PORT || 5001, () => console.log(`Listening on port ${process.env.PORT || 5001}!`));
+  app.use(errorHandler);
+
+  app.listen(process.env.PORT || 5001, () => console.log(`Listening on port ${process.env.PORT || 5001}!`));
+});

@@ -1,4 +1,4 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../../public/bootstrap.css";
 
 :root {
   --main-dark-blue: #2d3f53;

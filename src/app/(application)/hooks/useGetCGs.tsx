@@ -24,7 +24,7 @@ const emptyCampground: ICampground = {
   username: '',
 }
 
-function useGetCGs(urlStr: string = '/api/campgrounds', emptyCG: ICampground = emptyCampground) {
+function useGetCGs(urlStr: string = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/campgrounds`, emptyCG: ICampground = emptyCampground) {
   const emptyCGObj: IEmptyCGObj = {
     campground: emptyCG,
     campgrounds: [],
