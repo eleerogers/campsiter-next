@@ -94,7 +94,7 @@ function LoggedInAsContextProvider({ children }: Props) {
         cancelTokenRef.current.cancel('Logout request canceled.');
       }
 
-      await axios.get('/api/users/logout');
+      await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/logout`);
       localStorage.removeItem('userId');
       setLoggedInAs(loggedInAsInit);
 

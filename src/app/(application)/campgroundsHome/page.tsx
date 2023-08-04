@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 import { Button, Jumbotron, Container, Row, Col, Spinner, Pagination } from '@/app/(application)/components/bootstrap'
 import Link from 'next/link';
+import { usePathname } from 'next/navigation'
 import { toast } from 'react-toastify';
 import usePagination from '../hooks/usePagination';
 import useSearchFilter from '../hooks/useSearchFilter';
@@ -92,15 +93,17 @@ function Page() {
   //   }
   // } = useHistory();
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (window.innerWidth < 576 && window.pageYOffset > 0) {
-  //       window.scrollTo(0, 0);
-  //     } else if (window.pageYOffset > 115 && window.pageYOffset < 442) {
-  //       window.scrollTo(0, 115);
-  //     }
-  //   }, 0);
-  // }, [pathname, jumboOffsetHt]);
+  const pathname = usePathname()
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (window.innerWidth < 576 && window.pageYOffset > 0) {
+        window.scrollTo(0, 0);
+      } else if (window.pageYOffset > 115 && window.pageYOffset < 442) {
+        window.scrollTo(0, 115);
+      }
+    }, 0);
+  }, [pathname, jumboOffsetHt]);
 
   useEffect(() => {
     if (errMsg) {
