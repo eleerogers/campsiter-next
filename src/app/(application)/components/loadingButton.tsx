@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { animated, useSpring } from 'react-spring';
 import Button from 'react-bootstrap/Button';
 
@@ -11,36 +11,14 @@ interface Props {
 }
 
 export default function LoadingButton({ isLoading, children, ...props }: Props) {
-  const [showLoader, setShowLoader] = React.useState(false);
   const [width, setWidth] = React.useState(0);
   const [height, setHeight] = React.useState(0);
-  const ref = React.useRef<HTMLButtonElement>(null);
-  const [fadeOutProps, setFadeOutProps] = useSpring(() => ({ opacity: 0 }));
-  const [fadeInProps, setFadeInProps] = useSpring(() => ({ opacity: 0 }));
+  const ref = useRef<HTMLButtonElement>(null);
+  
+  // Define one spring animation for both fade-in and fade-out
+  const fadeProps = useSpring({ opacity: isLoading ? 1 : 0 });
 
-  React.useEffect(() => {
-    if (isLoading) {
-      setShowLoader(true);
-      setFadeOutProps({ opacity: 1 });
-      setFadeInProps({ opacity: 0 });
-    } else {
-      setShowLoader(false);
-      setFadeOutProps({ opacity: 0 });
-      setFadeInProps({ opacity: 1 });
-
-      if (showLoader) {
-        const timeout = setTimeout(() => {
-          setShowLoader(false);
-        }, 400);
-
-        return () => {
-          clearTimeout(timeout);
-        };
-      }
-    }
-  }, [isLoading, showLoader, setFadeOutProps, setFadeInProps]);
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (ref.current && ref.current.getBoundingClientRect().width) {
       setWidth(ref.current.getBoundingClientRect().width);
     }
@@ -55,7 +33,7 @@ export default function LoadingButton({ isLoading, children, ...props }: Props) 
       ref={ref}
       size="lg"
       style={
-        showLoader
+        isLoading
           ? {
               width: `${width}px`,
               height: `${height}px`,
@@ -63,12 +41,12 @@ export default function LoadingButton({ isLoading, children, ...props }: Props) 
           : {}
       }
     >
-      {showLoader ? (
-        <animated.div style={fadeOutProps}>
+      {isLoading ? (
+        <animated.div style={fadeProps}>
           <div className="loader" />
         </animated.div>
       ) : (
-        <animated.div style={fadeInProps}>{children}</animated.div>
+        <animated.div style={fadeProps}>{children}</animated.div>
       )}
     </Button>
   );

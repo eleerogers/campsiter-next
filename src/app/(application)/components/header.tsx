@@ -35,11 +35,11 @@ function Header() {
       <div className="flex">
         <Link
           className="nav-link padding-auto-0 dissapear-small"
-          href="/contactAdmin"
+          href="/contact"
         >
           Contact
         </Link>
-        <Link href={`/ycusers/${id}`}>
+        <Link href={`/user/${id}`}>
           <div className="nav-link-custom padding-auto-0 min-width-125">
             Logged in as
             {' '}
@@ -62,7 +62,7 @@ function Header() {
       <div className="flex">
         <Link
           className="nav-link padding-auto-0 dissapear-small"
-          href="/contactAdmin"
+          href="/contact"
         >
           Contact
         </Link>

@@ -198,8 +198,8 @@ export const getUserByToken = (req: Request, res: Response, next: NextFunction) 
 export const contact = async (req: Request, res: Response, next: NextFunction) => {
   const { firstName, lastName, email, message, emailTo } = req.body;
   const timeStamp = new Date().toString();
-  const enteredBothNames = firstName && lastName;
-  const fromMessage = enteredBothNames ? `CampSiter user ${firstName} ${lastName}` : 'a Campsiter user'
+  const hasName = firstName.length > 0;
+  const fromMessage = hasName ? `CampSiter user ${firstName} ${lastName}` : 'a Campsiter user'
   const html = `
   <h3>A message from ${fromMessage}:</h3>
   <p>${message}</p>
