@@ -102,6 +102,11 @@ function UserPicDisplay({ author, userId, userPicLoading, setUserPicLoadingFalse
           src={image}
           alt={email}
           onLoad={setUserPicLoadingFalse}
+          width={0}
+          height={0}
+          priority
+          sizes="100vw"
+          style={{ width: '100%', height: 'auto' }}
         />
         <div className="card-body">
           <p className="card-text mr-1 display-inline-block">

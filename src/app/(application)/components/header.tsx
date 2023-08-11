@@ -86,7 +86,7 @@ function Header() {
       <Container className="d-flex justify-content-between">
         <Col className="min-width-col">
           <Link href="/campgroundsHome">
-            <Image className="limit-pic-size" alt="Campsiter logo" src="https://res.cloudinary.com/eleerogers/image/upload/v1593126696/noun_camping_location_710490_srkfky.png" height={55} width={55} />
+            <Image className="limit-pic-size" alt="Campsiter logo" src="https://res.cloudinary.com/eleerogers/image/upload/v1593126696/noun_camping_location_710490_srkfky.png" height={55} width={55} priority />
             <Navbar.Brand className="color-dark-blue">CampSiter</Navbar.Brand>
           </Link>
         </Col>

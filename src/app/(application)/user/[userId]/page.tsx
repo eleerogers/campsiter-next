@@ -16,7 +16,7 @@ interface PageProps {
 }
 
 function UserProfile({ params: { userId } }: PageProps) {
-  const { data: { campgrounds, user: author }, errMsg, isLoading } = useGetCGs(`/api/campgrounds/user/${userId}`);
+  const { data: { campgrounds, user: author }, errMsg, isLoading } = useGetCGs(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/campgrounds/user/${userId}`);
   const [userPicLoading, setUserPicLoadingFalse] = useLoading();
   
   const campgroundsDisplayConfig = {
@@ -66,12 +66,14 @@ function UserProfile({ params: { userId } }: PageProps) {
         className="col-md-4"
         style={loadedDisplay}
       >
-        <UserPicDisplay
-          userId={userId}
-          author={author}
-          userPicLoading={userPicLoading}
-          setUserPicLoadingFalse={setUserPicLoadingFalse}
-        />
+        { author.first_name.length > 0 && (
+          <UserPicDisplay
+            userId={userId}
+            author={author}
+            userPicLoading={userPicLoading}
+            setUserPicLoadingFalse={setUserPicLoadingFalse}
+          />
+        )}
       </div>
       <div style={loadedDisplay} className={'user-cg-box col-md-8 border-top-mobile'}>
         <Container className="text-align-center">
