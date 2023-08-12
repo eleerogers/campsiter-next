@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import { LoggedInAsContextProvider } from './components/contexts/loggedInAsContext'
 import Footer from '@/app/(application)/components/footer'
 import Header from '@/app/(application)/components/header'
@@ -22,6 +24,7 @@ export default function RootLayout({
         <main className='bg-slate-800 text-slate-100 container mx-auto p-4'>
           {children}
         </main>
+        <ToastContainer />
         <Footer />
       </LoggedInAsContextProvider>
     </>
