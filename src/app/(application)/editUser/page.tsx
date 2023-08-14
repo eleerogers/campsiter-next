@@ -121,7 +121,7 @@ function EditUser() {
           });
         }
         toast.success(message);
-        push(`/ycusers/${id}`);
+        push(`/user/${id}`);
       }
     } catch (error) {
       const err = error as AxiosError;
