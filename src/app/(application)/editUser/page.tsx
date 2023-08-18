@@ -106,7 +106,7 @@ function EditUser() {
           image: newImageLink,
           image_id: newImageId
         }
-      } = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users`, fd, config);
+      } = await axios.put('/api/users', fd, config);
       if (status === 201) {
         if (loggedInAsThisUser) {
           setLoggedInAs({

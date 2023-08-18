@@ -74,7 +74,7 @@ function NewCampground() {
     fd.append('campLocation', name);
     fd.append('price', priceNoDollarSign);
     fd.append('userId', loggedInAsId);
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/campgrounds`;
+    const url = '/api/campgrounds';
 
     try {
       const {

@@ -71,7 +71,7 @@ function Login() {
         email: emailForm,
         password: passwordForm
       };
-      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/login/`, loginInfo, { cancelToken, withCredentials: true });
+      const { data } = await axios.post('/api/users/login/', loginInfo, { cancelToken, withCredentials: true });
       localStorage.userId = data.id;
       setLoggedInAs(data);
       back();

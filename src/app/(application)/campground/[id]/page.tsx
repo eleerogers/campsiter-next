@@ -47,7 +47,7 @@ function CampgroundPage({ params: { id } }: PageProps) {
     push,
   } = useRouter();
 
-  const fetchCGUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/campgrounds/${id}`;
+  const fetchCGUrl = '/api/campgrounds/${id}';
   const {
     data: { campground },
     isLoading: cgIsLoading, errMsg

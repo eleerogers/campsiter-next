@@ -70,7 +70,7 @@ function Contact() {
   async function submitForm(event: React.FormEvent) {
     event.preventDefault();
     setLoadingTrue();
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/contact`;
+    const url = '/api/users/contact';
     cancelTokenRef.current = axios.CancelToken.source()
     const cancelToken = cancelTokenRef.current.token;
     console.log("values: ", values)

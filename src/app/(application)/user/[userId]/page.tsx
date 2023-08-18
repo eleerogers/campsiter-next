@@ -16,7 +16,7 @@ interface PageProps {
 }
 
 function UserProfile({ params: { userId } }: PageProps) {
-  const { data: { campgrounds, user: author }, errMsg, isLoading } = useGetCGs(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/campgrounds/user/${userId}`);
+  const { data: { campgrounds, user: author }, errMsg, isLoading } = useGetCGs(`/api/campgrounds/user/${userId}`);
   const [userPicLoading, setUserPicLoadingFalse] = useLoading();
   
   const campgroundsDisplayConfig = {

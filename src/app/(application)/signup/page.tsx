@@ -95,7 +95,7 @@ function Signup() {
           data: {
             message
           }
-        } = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users`, fd, config);
+        } = await axios.post('/api/users', fd, config);
         if (status === 201) {
           toast.success(message);
           push('/login');
