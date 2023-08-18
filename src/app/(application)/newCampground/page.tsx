@@ -63,7 +63,8 @@ function NewCampground() {
       headers: {
         'content-type': 'multipart/form-data'
       },
-      cancelToken: cancelTokenRef.current.token
+      cancelToken: cancelTokenRef.current.token,
+      withCredentials: true
     };
     if (imageFile) {
       fd.append('image', imageFile);
@@ -73,7 +74,7 @@ function NewCampground() {
     fd.append('campLocation', name);
     fd.append('price', priceNoDollarSign);
     fd.append('userId', loggedInAsId);
-    const url = '/api/campgrounds';
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/campgrounds`;
 
     try {
       const {

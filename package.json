@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_ENV=development next dev",
     "build": "next build",
     "build-server": "tsc",
     "clean": "concurrently \"rm -rf dist\" \"rm -rf .next\"",
     "start": "concurrently \"npm run dev\" \"npm run backend\"",
     "lint": "next lint",
-    "backend": "node dist/server/index.js"
+    "backend": "NODE_ENV=development node dist/server/index.js"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
