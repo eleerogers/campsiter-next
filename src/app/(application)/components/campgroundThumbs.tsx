@@ -14,7 +14,7 @@ interface Props {
   }
 }
 
-function Campgrounds({ campgrounds, configObj }: Props): JSX.Element {
+function CampgroundThumbs({ campgrounds, configObj }: Props): JSX.Element {
   const {
     sm, md, lg, colClass, campClass
   } = configObj;
@@ -39,4 +39,4 @@ function Campgrounds({ campgrounds, configObj }: Props): JSX.Element {
   );
 }
 
-export default Campgrounds;
+export default CampgroundThumbs;

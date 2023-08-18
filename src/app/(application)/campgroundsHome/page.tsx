@@ -13,7 +13,7 @@ import useGetCGs from '../hooks/useGetCGs';
 import useSort from '../hooks/useSort';
 import SortDropdown from '../components/sortDropdown';
 import debounce from '../utils/debounce';
-import Campgrounds from '../components/campgrounds';
+import Campgrounds from '../components/campgroundThumbs';
 
 
 function Page() {

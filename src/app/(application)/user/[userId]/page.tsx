@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
 import useGetCGs from '../../hooks/useGetCGs';
 import useLoading from '../../hooks/useLoading';
-import Campgrounds from '../../components/campgrounds';
+import Campgrounds from '../../components/campgroundThumbs';
 import UserPicDisplay from '../../components/userPicDisplay'; 
 
 interface PageProps {

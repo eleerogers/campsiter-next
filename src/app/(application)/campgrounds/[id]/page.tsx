@@ -47,7 +47,7 @@ function CampgroundPage({ params: { id } }: PageProps) {
     push,
   } = useRouter();
 
-  const fetchCGUrl = '/api/campgrounds/${id}';
+  const fetchCGUrl = `/api/campgrounds/${id}`;
   const {
     data: { campground },
     isLoading: cgIsLoading, errMsg
@@ -239,7 +239,7 @@ function CampgroundPage({ params: { id } }: PageProps) {
                 onLoad={setLoadingFalse}
                 width={0}
                 height={0}
-                // priority
+                priority
                 sizes="100vw"
                 style={{ width: '100%', height: 'auto' }}
               /> }
