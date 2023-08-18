@@ -7916,18 +7916,18 @@ input {
 	box-shadow: none;
 	border: none !important;
 }
-/* #main-searchbar, #main-searchbar:focus {
+#main-searchbar, #main-searchbar:focus {
   outline:none;
   box-shadow: none;
   border: none !important;
-} */
+}
 
-#main-searchbar:focus {
+/* #main-searchbar:focus {
 	outline: -webkit-focus-ring-color auto 1px;
 	outline-color: -webkit-focus-ring-color;
 	outline-style: auto;
 	outline-width: 1px;
-}
+} */
 .logout-btn:focus {
 	outline: -webkit-focus-ring-color auto 1px;
 	outline-color: -webkit-focus-ring-color;
@@ -8185,6 +8185,8 @@ body {
 	background-color: var(--main-btn-focus-color);
 	border-color: var(--main-btn-focus-color);
 	outline-offset: -2px !important;
+  outline-style: none !important;
+  box-shadow: none;
 }
 .btn-info:not(:disabled):not(.disabled):active {
 	box-shadow: none !important;
@@ -8495,13 +8497,9 @@ div>.figure>a>.img-thumbnail {
 .jumbotron>.container>.sort-dropdown>.dropdown-toggle:active, .jumbotron>.container>.sort-dropdown>.dropdown-toggle:hover {
 	background-color: #2f5881 !important;
 	border-color: #2f5881 !important;
-	outline: 1px solid white;
 }
 .jumbotron>.container>.sort-dropdown>.dropdown-toggle:focus {
-	outline: -webkit-focus-ring-color auto 1px;
-	outline-color: -webkit-focus-ring-color;
-	outline-style: auto;
-	outline-width: 1px;
+	box-shadow: none;
 }
 .cg-card-body {
 	min-height: 187px;
