@@ -20,7 +20,7 @@ function CampgroundThumb({ campground, className }: Props) {
       <Figure
         className={`img-fluid w-100 centered campground transition ${loading ? 'loading' : 'done'}`}
       >
-        <Link href={`/campground/${id}`}>
+        <Link href={`/campgrounds/${id}`}>
           <Figure.Image
             alt={name}
             src={image}
@@ -46,7 +46,7 @@ function CampgroundThumb({ campground, className }: Props) {
           }
           </div>
         </Figure.Caption>
-        <Link href={`/campground/${id}`}>
+        <Link href={`/campgrounds/${id}`}>
           <Button
             size="sm"
             variant="outline-primary"
