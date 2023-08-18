@@ -13,7 +13,7 @@ import useGetCGs from '../hooks/useGetCGs';
 import useSort from '../hooks/useSort';
 import SortDropdown from '../components/sortDropdown';
 import debounce from '../utils/debounce';
-import Campgrounds from '../components/campgroundThumbs';
+import CampgroundThumbs from '../components/campgroundThumbs';
 
 
 function Page() {
@@ -86,12 +86,6 @@ function Page() {
       jumpCallback();
     }
   }, [sortStyle, pages.length, jumpCallback]);
-
-  // const {
-  //   location: {
-  //     pathname
-  //   }
-  // } = useHistory();
 
   const pathname = usePathname()
 
@@ -183,10 +177,10 @@ function Page() {
               'minWidth': '296px'
             }}
           >
-            {/* <Campgrounds
+            <CampgroundThumbs
               campgrounds={thisPageCGs}
               configObj={campgroundsDisplayConfig}
-            /> */}
+            />
           </Row>
         </Container>
         {paginationDisplay}
