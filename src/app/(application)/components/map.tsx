@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMap } from '@react-google-maps/api';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 
 const containerStyle = {
@@ -14,13 +14,16 @@ interface Props {
 
 function MapContainer({ lat, lng }: Props) {
   const center = { lat, lng };
+  const REACT_APP_GOOGLE_API_KEY: string = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY as string
 
   return (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={15}
-    />
+    <LoadScript googleMapsApiKey={REACT_APP_GOOGLE_API_KEY}>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={15}
+      />
+    </LoadScript>
   );
 }
 

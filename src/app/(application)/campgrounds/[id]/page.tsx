@@ -13,7 +13,7 @@ import moment from 'moment-mini';
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
 import { LoggedInAsContext } from '../../components/contexts/loggedInAsContext';
-// import MapContainer from '../../components/map';
+import MapContainer from '../../components/map';
 import DeleteModal from '../../components/deleteModal';
 import useLoading from '../../hooks/useLoading';
 import useGetCGs from '../../hooks/useGetCGs';
@@ -199,10 +199,10 @@ function CampgroundPage({ params: { id } }: PageProps) {
       <div className="row flex-dir-col-rev">
         <div className="col-md-3">
           <div className="map col-md-12 d-flex d-md-block">
-            {/* <MapContainer
+            <MapContainer
               lat={lat}
               lng={lng}
-            /> */}
+            />
           </div>
         </div>
         <div className="col-md-9">
