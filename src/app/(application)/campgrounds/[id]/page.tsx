@@ -17,9 +17,9 @@ import MapContainer from '../../components/map';
 import DeleteModal from '../../components/deleteModal';
 import useLoading from '../../hooks/useLoading';
 import useGetCGs from '../../hooks/useGetCGs';
-// import Comments from './comments';
-// import useGetAndDeleteComments from '../hooks/useGetAndDeleteComments';
-// import StarRating from '../../components/starRating';
+import Comments from '../../components/comments';
+import useGetAndDeleteComments from '../../hooks/useGetAndDeleteComments';
+import StarRating from '../../components/starRating';
 import { ICampground, ILoggedInAsContext } from '../../interfaces';
 
 
@@ -52,21 +52,21 @@ function CampgroundPage({ params: { id } }: PageProps) {
     data: { campground },
     isLoading: cgIsLoading, errMsg
   } = useGetCGs(fetchCGUrl, emptyCGObj);
-  // const [comments, deleteComment, currAvgRating] = useGetAndDeleteComments(campground);
+  const [comments, deleteComment, currAvgRating] = useGetAndDeleteComments(campground);
   
   const [loading, setLoadingFalse] = useLoading();
   const [hasAlreadyReviewed, setHasAlreadyReviewed] = useState(false);
   const [numRatings, setNumRatings] = useState(0);
 
-  // useEffect(() => {
-  //   // How many star ratings are there
-  //   const nRatings = comments.reduce((a, b) => {
-  //     return b.rating && b.rating > 0 ? a + 1 : a;
-  //   }, 0)
-  //   if (nRatings !== numRatings) {
-  //     setNumRatings(nRatings);
-  //   }
-  // }, [comments, numRatings])
+  useEffect(() => {
+    // How many star ratings are there
+    const nRatings = comments.reduce((a, b) => {
+      return b.rating && b.rating > 0 ? a + 1 : a;
+    }, 0)
+    if (nRatings !== numRatings) {
+      setNumRatings(nRatings);
+    }
+  }, [comments, numRatings])
 
   const {
     loggedInAs: {
@@ -75,13 +75,13 @@ function CampgroundPage({ params: { id } }: PageProps) {
     }
   } = useContext(LoggedInAsContext) as ILoggedInAsContext;
 
-  // useEffect(() => {
-  //   // determine if user has already reviewed this site
-  //   const alreadyReviewed = comments.some(comment => {
-  //     return comment.user_id === Number(loggedInAsId);
-  //   });
-  //   setHasAlreadyReviewed(alreadyReviewed);
-  // }, [comments, loggedInAsId]);  
+  useEffect(() => {
+    // determine if user has already reviewed this site
+    const alreadyReviewed = comments.some(comment => {
+      return comment.user_id === Number(loggedInAsId);
+    });
+    setHasAlreadyReviewed(alreadyReviewed);
+  }, [comments, loggedInAsId]);  
 
   useEffect(() => {
     if (errMsg) {
@@ -150,6 +150,9 @@ function CampgroundPage({ params: { id } }: PageProps) {
     }
   }
 
+  const campgroundString = encodeURIComponent(JSON.stringify(campground))
+  const commentsString = encodeURIComponent(JSON.stringify(comments))
+  
   function renderEditDeleteBtns() {
     if (
       loggedInAsId === String(userId)
@@ -159,9 +162,9 @@ function CampgroundPage({ params: { id } }: PageProps) {
         <>
           <Link href={{
             pathname: '/editCampground',
-            // state: {
-            //   campground
-            // }
+            query: {
+              campground: campgroundString
+            }
           }}
           >
             <Button
@@ -273,7 +276,7 @@ function CampgroundPage({ params: { id } }: PageProps) {
           <div className="card card-body bg-light mb-3">
             <div className="flex space-between">
                 <div className="float-left">
-                  {/* {
+                  {
                     numRatings > 0 &&
                     <div>
                       <StarRating
@@ -285,17 +288,17 @@ function CampgroundPage({ params: { id } }: PageProps) {
                       />
                       <p>Current campground rating: <b>{currAvgRating}</b></p>
                     </div>
-                  } */}
+                  }
                 </div>
               <span className="text-right float-right">
               { 
                 !hasAlreadyReviewed &&
                 <Link href={{
                   pathname: `/campgrounds/${campgroundId}/comments/new`,
-                  // state: {
-                  //   campground,
-                  //   comments,
-                  // }
+                  query: {
+                    campground: campgroundString,
+                    comments: commentsString,
+                  }
                 }}
                 >
                   <Button
@@ -311,11 +314,11 @@ function CampgroundPage({ params: { id } }: PageProps) {
             </div>
             <hr />
             <div className="row">
-              {/* <Comments
+              <Comments
                 campground={campground}
                 comments={comments}
                 deleteComment={deleteComment}
-              /> */}
+              />
             </div>
           </div>
         </div>
