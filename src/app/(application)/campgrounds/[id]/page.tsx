@@ -294,10 +294,9 @@ function CampgroundPage({ params: { id } }: PageProps) {
               { 
                 !hasAlreadyReviewed &&
                 <Link href={{
-                  pathname: `/campgrounds/${campgroundId}/comments/new`,
+                  pathname: `/newComment/${campgroundId}`,
                   query: {
                     campground: campgroundString,
-                    comments: commentsString,
                   }
                 }}
                 >
