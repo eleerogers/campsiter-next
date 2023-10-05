@@ -29,7 +29,6 @@ function Contact() {
 
   const { loggedInAs } = useContext(LoggedInAsContext) as ILoggedInAsContext;
   const emailTo = email || process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-  console.log("admin email: ", emailTo)
   const usernameTo = username || 'CampSiter';
   const subTitle = first_name && last_name 
   ? <>{first_name} {last_name} will receive your email address<br /> to be able to respond directly</>
@@ -73,7 +72,6 @@ function Contact() {
     const url = '/api/users/contact';
     cancelTokenRef.current = axios.CancelToken.source()
     const cancelToken = cancelTokenRef.current.token;
-    console.log("values: ", values)
     try {
       const { data: { message }, status } = await axios.post(url, values, { cancelToken });
       if (status === 201) {

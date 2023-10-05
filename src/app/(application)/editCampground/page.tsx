@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useContext, useCallback } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -11,12 +11,8 @@ import useForm from '../hooks/useForm';
 import useGetFileName from '../hooks/useGetFileName';
 import useLoading from '../hooks/useLoading';
 import LoadingButton from '../components/loadingButton';
-import { ICampground, ILoggedInAsContext } from '../interfaces';
+import { ILoggedInAsContext } from '../interfaces';
 
-
-interface IHistory {
-  campground: ICampground
-}
 
 function EditCampground() {
   const {

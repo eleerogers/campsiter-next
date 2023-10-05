@@ -11,7 +11,7 @@ import useForm from '../hooks/useForm';
 import useGetFileName from '../hooks/useGetFileName';
 import useLoading from '../hooks/useLoading';
 import LoadingButton from '../components/loadingButton';
-import { IUser, ILoggedInAsContext } from '../interfaces';
+import { ILoggedInAsContext } from '../interfaces';
 
 
 function EditUser() {
