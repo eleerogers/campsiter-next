@@ -50,7 +50,7 @@ function Comment({
       return (
         <div className="float-right">
           <Link href={{
-            pathname: `/campgrounds/${campgroundId}/comments/edit`,
+            pathname: `/editComment/${campgroundId}`,
             query: {
               commentObj: commentObjString,
               campground: campgroundString,
