@@ -2,8 +2,7 @@
 
 import React, { useEffect, useContext, useRef } from 'react';
 import { useRouter } from 'next/navigation'
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+import { Button, Container } from '../components/bootstrap'
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
 import { LoggedInAsContext } from '../components/contexts/loggedInAsContext';

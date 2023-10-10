@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { animated, useSpring } from 'react-spring';
-import Button from 'react-bootstrap/Button';
+import { Button } from '../components/bootstrap'
+
 
 interface Props {
   isLoading: boolean;

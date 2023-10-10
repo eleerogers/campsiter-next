@@ -1,11 +1,11 @@
 import React from 'react';
 import moment from 'moment-mini';
 import Link from 'next/link'
-import Button from 'react-bootstrap/Button';
+import { Button } from '../components/bootstrap'
 import { useLoggedInAsContext } from './contexts/loggedInAsContext';
 import DeleteModal from './deleteModal';
 import StarRating from './starRating';
-import { ICampground, IComment, ILoggedInAsContext } from '../interfaces';
+import { IComment, ILoggedInAsContext } from '../interfaces';
 
 
 interface Props {

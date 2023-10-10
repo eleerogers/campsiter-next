@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import _Rating from 'react-rating';
+import ReactRating from '../components/reactRating'
 import StarEmpty from 'react-bootstrap-icons/dist/icons/star';
 import StarFill from 'react-bootstrap-icons/dist/icons/star-fill';
 
@@ -21,7 +21,7 @@ interface RatingProps {
   fullSymbol: JSX.Element,
   readonly: boolean
 }
-const Rating = _Rating as unknown as React.FC<PropsWithChildren<RatingProps>>
+const Rating = ReactRating as unknown as React.FC<PropsWithChildren<RatingProps>>
 
 function StarRating({
     currRating,

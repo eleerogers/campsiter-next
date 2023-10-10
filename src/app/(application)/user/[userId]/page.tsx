@@ -2,10 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Spinner from 'react-bootstrap/Spinner';
+import { Col, Container, Row, Spinner } from '../../components/bootstrap'
 import useGetCGs from '../../hooks/useGetCGs';
 import useLoading from '../../hooks/useLoading';
 import Campgrounds from '../../components/campgroundThumbs';

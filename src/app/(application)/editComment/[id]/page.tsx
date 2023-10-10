@@ -1,11 +1,10 @@
 "use client"
 
 import React, { useEffect, useRef } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+import { Button, Container } from '../../components/bootstrap';
 import useForm from '../../hooks/useForm';
 import useLoading from '../../hooks/useLoading';
 import LoadingButton from '../../components/loadingButton';
@@ -14,24 +13,25 @@ import { ICampground, IComment } from '../../interfaces';
 
 
 interface PageProps {
-  params: { id: string }
+  params: { id: string },
+  searchParams: {
+    campground: string,
+    loggedInAsAdmin: string,
+    commentObj: string
+  }
 }
 
-function EditComment({ params: { id } }: PageProps) {
-  const searchParams = useSearchParams();
-  const campgroundString = searchParams.get('campground') ?? '';
+function EditComment({ params: { id }, searchParams: { campground: campgroundString, loggedInAsAdmin: loggedInAsAdminString, commentObj: commentObjString } }: PageProps) {
   let campground: ICampground | null = null;
   if (campgroundString) {
     const decodedString = decodeURIComponent(campgroundString);
     campground = JSON.parse(decodedString);
   }
-  const loggedInAsAdminString = searchParams.get('loggedInAsAdmin') ?? '';
   let adminBool: boolean | null = null;
   if (loggedInAsAdminString) {
     const decodedString = decodeURIComponent(loggedInAsAdminString);
     adminBool = JSON.parse(decodedString);
   }
-  const commentObjString = searchParams.get('commentObj') ?? '';
   let commentObj: IComment = {
     comment_id: NaN,
     user_id: NaN,
@@ -49,8 +49,6 @@ function EditComment({ params: { id } }: PageProps) {
     user_id: userId,
     comment,
     rating,
-    username,
-    created_at
   } = commentObj
   
   const { push, back } = useRouter();
