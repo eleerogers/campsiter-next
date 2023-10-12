@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { animated, useSpring } from 'react-spring';
-import { Button } from '../components/bootstrap'
+import { Button } from './imports/bootstrap'
 
 
 interface Props {

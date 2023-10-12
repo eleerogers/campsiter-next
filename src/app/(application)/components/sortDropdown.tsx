@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropdownButton, Dropdown } from './bootstrap';
+import { DropdownButton, Dropdown } from './imports/bootstrap';
 
 
 interface Props {

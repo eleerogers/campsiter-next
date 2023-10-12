@@ -3,7 +3,7 @@
 import React, {
   useState, useEffect, useCallback, useRef
 } from 'react';
-import { Button, Jumbotron, Container, Row, Col, Spinner, Pagination } from '@/app/(application)/components/bootstrap'
+import { Button, Jumbotron, Container, Row, Col, Spinner, Pagination } from '@/app/(application)/components/imports/bootstrap'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import { toast } from 'react-toastify';

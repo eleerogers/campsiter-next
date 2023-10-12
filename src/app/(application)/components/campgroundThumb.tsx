@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Figure, Button } from './bootstrap'
+import { Figure, Button } from './imports/bootstrap'
 import useLoading from '../hooks/useLoading';
 import StarRating from './starRating';
 import { ICampground } from '../interfaces';

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/app/(application)/components/bootstrap';
+import { Button } from '@/app/(application)/components/imports/bootstrap';
 
 
 function Landing() {

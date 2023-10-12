@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation'
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
-import { Button, Container } from '../../components/bootstrap';
+import { Button, Container } from '../../components/imports/bootstrap';
 import useForm from '../../hooks/useForm';
 import useLoading from '../../hooks/useLoading';
 import LoadingButton from '../../components/loadingButton';

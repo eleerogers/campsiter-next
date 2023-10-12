@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment-mini';
 import Link from 'next/link'
-import { Button } from '../components/bootstrap'
+import { Button } from './imports/bootstrap'
 import { useLoggedInAsContext } from './contexts/loggedInAsContext';
 import DeleteModal from './deleteModal';
 import StarRating from './starRating';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal } from '../components/bootstrap'
+import { Button, Modal } from './imports/bootstrap'
 
 
 interface Props<T> {

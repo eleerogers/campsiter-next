@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col } from './bootstrap'
+import { Col } from './imports/bootstrap'
 import CampgroundThumb from './campgroundThumb';
 import { ICampground } from '../interfaces';
 

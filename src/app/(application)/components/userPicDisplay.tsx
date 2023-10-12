@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
-import { Button } from '../components/bootstrap'
+import { Button } from './imports/bootstrap'
 import { LoggedInAsContext } from './contexts/loggedInAsContext';
 import Envelope from 'react-bootstrap-icons/dist/icons/envelope-fill';
 import { IUser, ILoggedInAsContext } from '../interfaces';

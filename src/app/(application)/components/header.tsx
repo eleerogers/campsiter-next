@@ -1,6 +1,6 @@
 "use client"
 
-import { Nav, Navbar, Container, Button, Col } from './bootstrap'
+import { Nav, Navbar, Container, Button, Col } from './imports/bootstrap'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, usePathname } from 'next/navigation'

@@ -4,7 +4,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Button, Col, Container, Row, Spinner } from '../../components/bootstrap'
+import { Button, Col, Container, Row, Spinner } from '../../components/imports/bootstrap'
 import moment from 'moment-mini';
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';

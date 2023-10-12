@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import ReactRating from '../components/reactRating'
+import ReactRating from './imports/reactRating'
 import StarEmpty from 'react-bootstrap-icons/dist/icons/star';
 import StarFill from 'react-bootstrap-icons/dist/icons/star-fill';
 
