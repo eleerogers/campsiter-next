@@ -9,7 +9,7 @@
     "clean": "concurrently \"rm -rf dist\" \"rm -rf .next\"",
     "start": "concurrently \"npm run dev\" \"npm run backend\"",
     "lint": "next lint",
-    "backend": "NODE_ENV=development node dist/server/index.js"
+    "backend": "NODE_ENV=development node dist/src/server/index.js"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
