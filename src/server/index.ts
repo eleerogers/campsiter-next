@@ -33,9 +33,17 @@ nextApp.prepare().then(() => {
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser('keyboard_cat'));
   app.use(cors({
-    origin: 'http://localhost:3000' || 'https://campsiter-next.vercel.app/',
+    origin: function(origin, callback) {
+      const allowedOrigins = ['http://localhost:3000', 'https://campsiter-next.vercel.app'];
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   }));
+  
 
   app.use('/api/users', users);
   app.use('/api/campgrounds', campgrounds);
