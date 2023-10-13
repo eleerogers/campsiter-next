@@ -1,15 +1,14 @@
-#Campsiter-Next
+## Campsiter-Next
 
 A new version of the Campsiter app:
-- [Github repo](https://github.com/eleerogers/campsiter)
+- [Original App Github repo](https://github.com/eleerogers/campsiter)
 - [Site](https://www.campsiter.org/)
 
-This version uses Next.js v13.4, utilizing the newer 'app' directory system.
+Created with Next.js v13.4, using the newer 'app' directory system.
 
+Bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
+### Getting Started
 
 First, run the development server:
 
