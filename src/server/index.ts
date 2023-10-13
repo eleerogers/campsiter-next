@@ -33,7 +33,7 @@ nextApp.prepare().then(() => {
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser('keyboard_cat'));
   app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000' || 'https://campsiter-next.vercel.app/',
     credentials: true,
   }));
 
