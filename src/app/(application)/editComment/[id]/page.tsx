@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'; 
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
 import { Button, Container } from '../../components/imports/bootstrap';
@@ -51,7 +52,7 @@ function EditComment({ params: { id }, searchParams: { campground: campgroundStr
     rating,
   } = commentObj
   
-  const { push, back } = useRouter();
+  const { push } = useRouter();
 
   const [loading, setLoadingFalse, setLoadingTrue] = useLoading(false);
 
@@ -138,14 +139,15 @@ function EditComment({ params: { id }, searchParams: { campground: campgroundStr
               Submit
             </LoadingButton>
           </div>
-          <Button
-            onClick={back}
-            size="sm"
-            variant="link"
-            className="float-left go-back-btn"
-          >
-            Go Back
-          </Button>
+          <Link href={`/campgrounds/${id}`} passHref>
+            <Button
+              size="sm"
+              variant="link"
+              className="float-left go-back-btn"
+            >
+              Go Back
+            </Button>
+          </Link>
         </form>
       </Container>
     </div>

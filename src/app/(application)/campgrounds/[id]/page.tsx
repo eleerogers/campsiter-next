@@ -147,7 +147,6 @@ function CampgroundPage({ params: { id } }: PageProps) {
   }
 
   const campgroundString = encodeURIComponent(JSON.stringify(campground))
-  const commentsString = encodeURIComponent(JSON.stringify(comments))
   
   function renderEditDeleteBtns() {
     if (
