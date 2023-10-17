@@ -156,7 +156,7 @@ function CampgroundPage({ params: { id } }: PageProps) {
       return (
         <>
           <Link href={{
-            pathname: '/editCampground',
+            pathname: `/editCampground/${id}`,
             query: {
               campground: campgroundString
             }

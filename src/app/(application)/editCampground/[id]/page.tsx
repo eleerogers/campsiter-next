@@ -1,25 +1,31 @@
 "use client"
 
 import React, { useEffect, useRef, useContext } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation'
-import { Button, Container } from '../components/imports/bootstrap'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Button, Container } from '../../components/imports/bootstrap'
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
-import { LoggedInAsContext } from '../components/contexts/loggedInAsContext';
-import useForm from '../hooks/useForm';
-import useGetFileName from '../hooks/useGetFileName';
-import useLoading from '../hooks/useLoading';
-import LoadingButton from '../components/loadingButton';
-import { ILoggedInAsContext } from '../interfaces';
+import { LoggedInAsContext } from '../../components/contexts/loggedInAsContext';
+import useForm from '../../hooks/useForm';
+import useGetFileName from '../../hooks/useGetFileName';
+import useLoading from '../../hooks/useLoading';
+import LoadingButton from '../../components/loadingButton';
+import { ILoggedInAsContext } from '../../interfaces';
 
 
-function EditCampground() {
+interface PageProps {
+  params: { id: string },
+  searchParams: {
+    campground: string,
+  }
+}
+
+function EditCampground({ params: { id }, searchParams: { campground: campgroundString } }: PageProps) {
   const {
     loggedInAs: { admin }
   } = useContext(LoggedInAsContext) as ILoggedInAsContext;
 
-  const searchParams = useSearchParams();
-  const campgroundString = searchParams.get('campground') || '';
   let campground = null;
   if (campgroundString) {
     const decodedString = decodeURIComponent(campgroundString);
@@ -27,8 +33,7 @@ function EditCampground() {
   }
 
   const {
-    push,
-    back
+    push
   } = useRouter();
 
   const initBtnMessage = 'Change Campground Image';
@@ -218,14 +223,15 @@ function EditCampground() {
                 Submit
               </LoadingButton>
             </div>
-            <Button
-              onClick={back}
-              size="sm"
-              variant="link"
-              className="float-left go-back-btn"
-            >
-              Go Back
-            </Button>
+            <Link href={`/campgrounds/${id}`} passHref>
+              <Button
+                size="sm"
+                variant="link"
+                className="float-left go-back-btn"
+              >
+                Go Back
+              </Button>
+            </Link>
           </div>
         </form>
       </Container>
