@@ -2,6 +2,7 @@
 
 import React, { useContext, useEffect, useRef, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
 import { Button, Container } from '../../components/imports/bootstrap'
@@ -52,7 +53,7 @@ function NewComment({ params: { id } }: PageProps) {
     const decodedString = decodeURIComponent(campgroundString);
     campground = JSON.parse(decodedString);
   }
-  const { push, back } = useRouter();
+  const { push } = useRouter();
   
   useEffect(() => {
     if (!localStorage.userId) {
@@ -134,14 +135,15 @@ function NewComment({ params: { id } }: PageProps) {
               Submit
             </LoadingButton>
           </div>
-          <Button
-            onClick={back}
-            size="sm"
-            variant="link"
-            className="float-left go-back-btn"
-          >
-            Go Back
-          </Button>
+          <Link href={`/campgrounds/${id}`} passHref>
+            <Button
+              size="sm"
+              variant="link"
+              className="float-left go-back-btn"
+            >
+              Go Back
+            </Button>
+          </Link>
         </form>
       </Container>
     </div>
