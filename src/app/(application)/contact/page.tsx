@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
 import { Button, Container } from '../components/imports/bootstrap'
@@ -12,11 +12,13 @@ import LoadingButton from '../components/loadingButton';
 import { ILoggedInAsContext } from '../interfaces';
 
 
-function Contact() {
+interface PageProps {
+  searchParams: { author: string }
+}
+
+function Contact({ searchParams: { author: authorString }}: PageProps) {
 
   const { back } = useRouter()
-  const searchParams = useSearchParams();
-    const authorString = searchParams.get('author') || '';
 
     let author = null;
     if (authorString) {

@@ -32,7 +32,6 @@ function UserPicDisplay({ author, userId, userPicLoading, setUserPicLoadingFalse
             author: authorString,
           },
         }}
-        as='/contact'
       >
         {
           loggedInAsId &&
