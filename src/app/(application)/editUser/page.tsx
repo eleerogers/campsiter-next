@@ -2,6 +2,7 @@
 
 import React, { useEffect, useContext, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link'
 import { Button, Container } from '../components/imports/bootstrap'
 import axios, { AxiosError, CancelTokenSource } from 'axios';
 import { toast } from 'react-toastify';
@@ -236,14 +237,15 @@ function EditUser() {
               Submit
             </LoadingButton>
           </div>
-          <Button
-            onClick={back}
-            size="sm"
-            variant="link"
-            className="float-left go-back-btn"
-          >
-            Go Back
-          </Button>
+          <Link href={`/user/${id}`} passHref>
+            <Button
+              size="sm"
+              variant="link"
+              className="float-left go-back-btn"
+            >
+              Go Back
+            </Button>
+          </Link>
         </form>
       </Container>
     </div>
