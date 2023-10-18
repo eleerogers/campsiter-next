@@ -20,7 +20,7 @@ export default function LoadingButton({ isLoading, children, ...props }: Props) 
   const fadeProps = useSpring({ opacity: isLoading ? 1 : 0 });
 
   useEffect(() => {
-    if (ref.current && ref.current.getBoundingClientRect().width) {
+    if (ref.current?.getBoundingClientRect().width) {
       setWidth(ref.current.getBoundingClientRect().width);
     }
     if (ref.current && ref.current.getBoundingClientRect().height) {

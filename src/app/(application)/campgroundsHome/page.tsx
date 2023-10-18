@@ -49,7 +49,7 @@ function Page() {
   }, [debouncedResizeWindow]);
 
   useEffect(() => {
-    setJumboOffsetHt(jumbotronRef.current?.offsetHeight || 0)
+    setJumboOffsetHt(jumbotronRef.current?.offsetHeight ?? 0)
   }, [windowWidth, jumbotronRef]);
 
   const pages = [];

@@ -1,8 +1,7 @@
 require('dotenv').config();
 
-import express from 'express';
+import express, { Request, Response } from 'express';
 import next from 'next';
-import { Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import cors from 'cors';

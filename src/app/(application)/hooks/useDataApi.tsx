@@ -26,8 +26,11 @@ const useDataApi = (initialUrl: string, initialData: IEmptyCG): [{ data: IEmptyC
       } catch (error) {
         const err = error as AxiosError
         if (err.response?.data) {
-          const { response: { data: message } } = err;
-          setIsError(`${message}`);
+          let message = err.response.data;
+          if (typeof message === 'object') {
+            message = JSON.stringify(message, null, 2);
+          }
+          setIsError(message as string);
         }
         if (axios.isCancel(err)) {
           console.log(`axios call was cancelled`);

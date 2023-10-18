@@ -34,7 +34,7 @@ function UserProfile({ params: { userId } }: PageProps) {
   }, [errMsg]);
 
   useEffect(() => {
-    if (window.pageYOffset > 115) {
+    if (window.scrollY > 115) {
       window.scrollTo(0, 0);
     }
   }, []);

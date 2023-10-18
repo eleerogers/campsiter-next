@@ -5,7 +5,7 @@ import { Button } from './imports/bootstrap'
 import { useLoggedInAsContext } from './contexts/loggedInAsContext';
 import DeleteModal from './deleteModal';
 import StarRating from './starRating';
-import { IComment, ILoggedInAsContext } from '../interfaces';
+import { IComment } from '../interfaces';
 
 
 interface Props {
@@ -24,7 +24,7 @@ function Comment({
       id: loggedInAsId,
       admin: loggedInAsAdmin
     }
-  } = useLoggedInAsContext() as ILoggedInAsContext;
+  } = useLoggedInAsContext();
   const {
     id: campgroundId,
   } = campground;

@@ -26,9 +26,6 @@ function Login() {
     }
   } = useForm(loginInit);
 
-  // const {
-  //   length
-  // } = useHistory();
   const { push, back } = useRouter()
   const { loggedInAs, setLoggedInAs } = useContext(LoggedInAsContext) as ILoggedInAsContext;
 

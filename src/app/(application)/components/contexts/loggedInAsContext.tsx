@@ -72,8 +72,11 @@ function LoggedInAsContextProvider({ children }: Props) {
           console.log(`axios call was cancelled`);
         }
         if (err.response?.data) {
-          const { response: { data: message } } = err;
-          toast.error(`${message}`);
+          let message = err.response.data;
+          if (typeof message === 'object') {
+            message = JSON.stringify(message, null, 2);
+          }
+          toast.error(message as string);
         }
       }
     };

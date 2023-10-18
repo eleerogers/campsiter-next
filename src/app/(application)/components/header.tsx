@@ -16,12 +16,6 @@ function Header() {
       username
     }
   } = useLoggedInAsContext() as ILoggedInAsContext;
-  // const {
-  //   location: {
-  //     pathname
-  //   },
-  //   push
-  // } = useHistory();
 
   const { push } = useRouter()
   const pathname = usePathname()
