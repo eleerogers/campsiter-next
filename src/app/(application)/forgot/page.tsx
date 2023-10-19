@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
@@ -50,7 +52,7 @@ function Forgot() {
       const { data, status } = await axios.post('api/users/forgot', { email }, { cancelToken });
       if (status === 200) {
         toast.success(data);
-        push('/campgroundsHome');
+        push('/login');
       }
     } catch (error) {
       const err = error as AxiosError;
