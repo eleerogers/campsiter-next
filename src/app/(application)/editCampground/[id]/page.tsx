@@ -63,7 +63,7 @@ function EditCampground({ params: { id }, searchParams: { campground: campground
   }, [push]);
 
   useEffect(() => {
-    if (window.pageYOffset > 115) {
+    if (window.scrollY > 115) {
       window.scrollTo(0, 0);
     }
   }, []);

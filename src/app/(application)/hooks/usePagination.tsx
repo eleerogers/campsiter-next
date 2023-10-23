@@ -29,9 +29,9 @@ function usePagination(data: ICampground[], itemsPerPage: number, jumbotronHeigh
     const jumboHtPlusNav = jumbotronHeight + 140;
 
     if (window.innerWidth < 576 
-      && window.pageYOffset > jumboHtMinusNavHt) {
+      && window.scrollY > jumboHtMinusNavHt) {
       window.scrollTo(0, jumboHtMinusNavHt);
-    } else if (window.pageYOffset > jumboHtPlusNav) {
+    } else if (window.scrollY > jumboHtPlusNav) {
       window.scrollTo(0, jumboHtPlusNav);
     }
   }

@@ -91,9 +91,9 @@ function Page() {
 
   useEffect(() => {
     setTimeout(() => {
-      if (window.innerWidth < 576 && window.pageYOffset > 0) {
+      if (window.innerWidth < 576 && window.scrollY > 0) {
         window.scrollTo(0, 0);
-      } else if (window.pageYOffset > 115 && window.pageYOffset < 442) {
+      } else if (window.scrollY > 115 && window.scrollY < 442) {
         window.scrollTo(0, 115);
       }
     }, 0);

@@ -47,7 +47,7 @@ function Contact({ searchParams: { author: authorString }}: PageProps) {
   const { values, handleChange, set } = useForm(initData);
 
   useEffect(() => {
-    if (window.pageYOffset > 115) {
+    if (window.scrollY > 115) {
       window.scrollTo(0, 0);
     }
   }, []);
