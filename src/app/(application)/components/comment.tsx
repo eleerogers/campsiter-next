@@ -96,7 +96,7 @@ function Comment({
             </div>
           }
           <p className="card-title">
-            <Link className="text-primary" href={`/ycusers/${user_id}`}>
+            <Link className="text-primary" href={`/user/${user_id}`}>
               <strong>
                 {username}
               </strong>
