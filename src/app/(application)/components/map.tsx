@@ -17,7 +17,7 @@ function MapContainer({ lat, lng }: Props) {
   const REACT_APP_GOOGLE_API_KEY: string = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY as string
 
   return (
-    <LoadScript googleMapsApiKey={REACT_APP_GOOGLE_API_KEY}>
+    <LoadScript googleMapsApiKey={REACT_APP_GOOGLE_API_KEY} loadingElement={<div />}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
